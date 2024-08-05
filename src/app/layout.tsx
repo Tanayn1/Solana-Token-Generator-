@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AppWalletProvider from "./components/WalletContextProvider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <Toaster richColors/>
+      <body className={inter.className}>
+        <AppWalletProvider>
+          {children}
+        </AppWalletProvider>
+      </body>
     </html>
   );
 }
